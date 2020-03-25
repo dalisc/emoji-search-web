@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Clipboard from "clipboard";
 
-import EmojiResultRow from "./ResultCell";
+import ResultCell from "./ResultCell";
 import "./Results.css";
 
 export default class Results extends PureComponent {
@@ -20,13 +20,17 @@ export default class Results extends PureComponent {
 
   render() {
     return (
-      <div className="component-emoji-results">
+      <div class="grid-container">
         {this.props.emojiData.map(emojiData => (
-          <EmojiResultRow
-            key={emojiData.title}
-            symbol={emojiData.symbol}
-            title={emojiData.title}
+            <div class="grid-item">
+          <ResultCell
+            key={emojiData.unicodeName}
+            character={emojiData.character}
+            unicodeName={emojiData.unicodeName}
+            codePoint={emojiData.codePoint}
           />
+          
+          </div>
         ))}
       </div>
     );

@@ -4,21 +4,21 @@ import "./ResultCell.css";
 
 export default class ResultCell extends PureComponent {
   static propTypes = {
-    title: PropTypes.string,
-    symbol: PropTypes.string
+    unicodeName: PropTypes.string,
+    character: PropTypes.string,
+    codePoint: PropTypes.string,
   };
 
   render() {
-    const codePointHex = this.props.symbol.codePointAt(0).toString(16);
-    const src = `//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`;
     return (
       <div
         className="component-emoji-result-row copy-to-clipboard"
-        data-clipboard-text={this.props.symbol}
+        data-clipboard-text={this.props.character}
       >
-        <img alt={this.props.title} src={src} />
-        <span className="title">{this.props.title}</span>
-        <span className="info">Click to copy emoji</span>
+        <div className="emoji">{this.props.character}
+        <p className="title">{this.props.unicodeName}</p>
+        <span className="tooltip-text">Click to copy!</span>
+        </div>
       </div>
     );
   }
