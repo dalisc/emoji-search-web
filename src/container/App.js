@@ -8,6 +8,7 @@ import './App.css';
 import CategoriesSelect from "../components/CategoriesSelect";
 import axios from 'axios';
 
+const API_KEY = process.env.OPEN_EMOJI_API_KEY;
 var CancelToken = axios.CancelToken;
 let cancel;
 
@@ -24,7 +25,7 @@ class App extends Component {
 
   async componentDidMount() {
     // Load all emojis
-    let response = await API.get('/emojis?&access_key=8d6cba56a989eb11e1fb6817896069881cdf6711');
+    let response = await API.get('/emojis?&access_key=' + API_KEY);
     console.log(response);
 
     const filteredEmoji = response.data;
@@ -55,7 +56,6 @@ class App extends Component {
       cancel();
 
     }
-    // Start the loading spinner
     this.setState({
       isLoading: true,
     })
@@ -67,7 +67,7 @@ class App extends Component {
     }
     
     console.log("Searching for emojis...\n");
-    API.get('/emojis?search=' + this.state.query + '&access_key=8d6cba56a989eb11e1fb6817896069881cdf6711', {
+    API.get('/emojis?search=' + this.state.query + '&access_key=' + API_KEY, {
       cancelToken: new CancelToken(function executor(c) {
         cancel = c;
       })
