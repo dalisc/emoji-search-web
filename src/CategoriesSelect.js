@@ -3,6 +3,30 @@ import Select from 'react-select';
 import PropTypes from "prop-types";
 import API from "./utils/API";
 
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    color: 'black',
+    backgroundColor: 'none',
+    '&:hover': {
+    backgroundColor: 'lightgray',
+    }
+  }),
+  control: (base, state) => ({
+    ...base,
+    boxShadow: state.isFocused ? 0 : 0,
+    color: state.isSelected? 0:0,
+    borderColor: state.isFocused
+      ? 'black'
+      : 'lightgray',
+    '&:hover': {
+      borderColor: state.isFocused
+        ? 'black'
+        : 'lightgray',
+    }
+  })
+};
+
 export default class CategoriesSelect extends PureComponent {
   constructor(props) {
       super(props);
@@ -54,7 +78,7 @@ export default class CategoriesSelect extends PureComponent {
     handleChange = selected => {
       this.props.categoryChange(selected);
     };
-
+    
   render() {
     return (
       <div className="container">
@@ -62,11 +86,13 @@ export default class CategoriesSelect extends PureComponent {
         <div className="col-md-4"></div>
         <div className="col-md-4">
           <Select 
+          styles={customStyles}
           options={ this.state.categories } 
           onChange={this.handleChange}
           placeholder="Category"
           isClearable={true}
-          isLoading={this.state.isLoading}/>
+          isLoading={this.state.isLoading}
+          isSearchable={false}/>
         </div>
         <div className="col-md-4"></div>
       </div>

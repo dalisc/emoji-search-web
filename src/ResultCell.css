@@ -17,33 +17,35 @@
 .component-emoji-result-row .emoji .tooltip-text-copy {
     visibility: hidden;
     width: 120px;
-    background-color: gray;
+    background-color: lightgray;
     color: #fff;
     text-align: center;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 15px;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
     bottom: 90%;
     left: 50%;
     margin-left: -60px;
+    padding: 3px;
 }
 
 .component-emoji-result-row .emoji .tooltip-text-copied {
     visibility: hidden;
     width: 120px;
-    background-color: gray;
+    background-color: lightgray;
     color: #fff;
     text-align: center;
     border-radius: 5px;
-    font-size: 20px;
+    font-size: 15px;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
     bottom: 90%;
     left: 50%;
     margin-left: -60px;
+    padding: 3px;
 }
 
 .component-emoji-result-row:hover .tooltip-text-copy {

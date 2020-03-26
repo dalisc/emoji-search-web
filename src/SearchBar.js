@@ -24,7 +24,7 @@ export default class SearchBar extends PureComponent {
       <div className="component-search-input">
         <div>
           <input 
-            // onChange={event => {this.setState({query: event.target.value})}}
+            placeholder="Search for your emoji..."
             onChange={event => this.handleChange(event)}
             onKeyPress={event => {
                         if (event.key === 'Enter') {

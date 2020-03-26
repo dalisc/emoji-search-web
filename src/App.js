@@ -6,6 +6,10 @@ import API from "./utils/API";
 import ClipLoader from "react-spinners/BeatLoader";
 import './App.css';
 import CategoriesSelect from "./CategoriesSelect";
+import axios from 'axios';
+
+var CancelToken = axios.CancelToken;
+let cancel;
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +52,11 @@ class App extends Component {
   }
 
   handleSearchChange = event => {
+
+    if (cancel != undefined) {
+      cancel();
+
+    }
     // Start the loading spinner
     this.setState({
       isLoading: true,
@@ -60,7 +69,11 @@ class App extends Component {
     }
     
     console.log("Searching for emojis...\n");
-    API.get('/emojis?search=' + this.state.query + '&access_key=8d6cba56a989eb11e1fb6817896069881cdf6711')
+    API.get('/emojis?search=' + this.state.query + '&access_key=8d6cba56a989eb11e1fb6817896069881cdf6711', {
+      cancelToken: new CancelToken(function executor(c) {
+        cancel = c;
+      })
+    })
       .then(response => {
         if (response.data == null) {
           this.setState({ 
@@ -74,7 +87,11 @@ class App extends Component {
             console.log(response))
           }
         }
-      )
+      ). catch(function(thrown) {
+        if (axios.isCancel(thrown)) {
+          console.log('Request canceled', thrown.message);
+        }
+      })
   };
 
   render() {
@@ -83,21 +100,22 @@ class App extends Component {
     return (
       <div className="App">
         <div className="header">
-        <Header />
+          <Header />
         </div>
+
         <div className="search">
-        <div className="searchbox">
-        <SearchBar 
-          textChange={this.handleSearchChange}/>
+          <div className="searchbox">
+            <SearchBar 
+              textChange={this.handleSearchChange}/>
+          </div>
+          <div className="category">
+            <CategoriesSelect 
+              categoryChange={this.setCategory}/>
+          </div>
         </div>
-        <div className="category">
-        <CategoriesSelect 
-          categoryChange={this.setCategory}/>
-        </div>
-        </div>
-        <div className="results">
-          {isLoading ? <div className="loader"><ClipLoader /></div> : <Results emojiData={filteredEmoji} />}
-        </div>
+        
+       {isLoading ? <div className="loader"><ClipLoader /></div> : <div className="results"><Results emojiData={filteredEmoji} /></div>}
+        
       </div>
     );  
   }
