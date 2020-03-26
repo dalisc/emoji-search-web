@@ -3,7 +3,7 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import Results from './Results';
 import API from "./utils/API";
-import ClipLoader from "react-spinners/BeatLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import './App.css';
 import CategoriesSelect from "./CategoriesSelect";
 import axios from 'axios';
@@ -114,7 +114,7 @@ class App extends Component {
           </div>
         </div>
         
-       {isLoading ? <div className="loader"><ClipLoader /></div> : <div className="results"><Results emojiData={filteredEmoji} /></div>}
+       {isLoading ? <div className="loader"><BeatLoader /></div> : <div className="results"><Results emojiData={filteredEmoji} /></div>}
         
       </div>
     );  
