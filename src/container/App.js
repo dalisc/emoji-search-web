@@ -7,6 +7,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 import './App.css';
 import CategoriesSelect from "../components/CategoriesSelect";
 import axios from 'axios';
+import {Helmet} from "react-helmet";
+
 
 const API_KEY = process.env.OPEN_EMOJI_API_KEY;
 var CancelToken = axios.CancelToken;
@@ -24,6 +26,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    document.title = 'Your page title here';
+
     // Load all emojis
     let response = await API.get('/emojis?&access_key=' + API_KEY);
     console.log(response);
@@ -97,6 +101,10 @@ class App extends Component {
     const { isLoading, filteredEmoji } = this.state;
     return (
       <div className="App">
+                    <Helmet>
+                <meta charSet="utf-8" />
+                <title>Emoji Search</title>
+            </Helmet>
         <div className="header">
           <Header />
         </div>
