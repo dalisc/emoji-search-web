@@ -1,13 +1,13 @@
 .component-emoji-result-row {
     padding: 10px;
-    height: 50px;
+    height: 60px;
     position: relative;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     cursor: pointer;
 }
 
 .component-emoji-result-row .emoji {
-    font-size: 150%;
+    font-size: 60px;
 }
 
 .component-emoji-result-row .title {
