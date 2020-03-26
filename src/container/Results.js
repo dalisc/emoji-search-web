@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import Clipboard from "clipboard";
 
-import ResultCell from "./ResultCell";
+import ResultCell from "../components/ResultCell";
 import "./Results.css";
 
 export default class Results extends PureComponent {

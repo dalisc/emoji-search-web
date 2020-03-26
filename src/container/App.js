@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Header from './Header';
-import SearchBar from './SearchBar';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
 import Results from './Results';
-import API from "./utils/API";
+import API from "../utils/API";
 import BeatLoader from "react-spinners/BeatLoader";
 import './App.css';
-import CategoriesSelect from "./CategoriesSelect";
+import CategoriesSelect from "../components/CategoriesSelect";
 import axios from 'axios';
 
 var CancelToken = axios.CancelToken;
@@ -23,11 +23,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    console.log("Fecting all emojis...\n");
-
-    // Load all emojis.
+    // Load all emojis
     let response = await API.get('/emojis?&access_key=8d6cba56a989eb11e1fb6817896069881cdf6711');
-    
     console.log(response);
 
     const filteredEmoji = response.data;
@@ -40,6 +37,7 @@ class App extends Component {
     });
   }
 
+  // Filter emojis when category is changed
   setCategory = selected => {
     var category;
     if (selected == null) {

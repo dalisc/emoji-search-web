@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Select from 'react-select';
 import PropTypes from "prop-types";
-import API from "./utils/API";
+import API from "../utils/API";
 
 const customStyles = {
   option: (provided, state) => ({
