@@ -7,13 +7,9 @@ export default class CategoriesSelect extends PureComponent {
   constructor(props) {
       super(props);
       this.state = {
+        isLoading: true,
         categories: [
-          { label: "All", value: 1 },
-          { label: "travel-places", value: 2 },
-          { label: "Netflix", value: 3 },
-          { label: "Tesla", value: 4 },
-          { label: "Amazon", value: 5 },
-          { label: "Alphabet", value: 6 },
+          { label: "All"}
         ]
       };
     }
@@ -26,17 +22,27 @@ export default class CategoriesSelect extends PureComponent {
       
       console.log(response);
   
-      let mappedResponseDadta = response.data.map((category) => {
+      let categoriesList = response.data.map((category) => {
         return {
           label: category.slug
         }
       })
 
-      const categories = mappedResponseDadta;
+      categoriesList = categoriesList.sort((c1, c2) => {
+        return c1.label < c2.label
+          ? -1
+          : c1. label > c2.label
+            ? 1
+            : 0;
+      })
+
+      var Allcategories = this.state.categories.concat(categoriesList); 
+      const categories = Allcategories;
   
       this.setState({
         ...this.state, ...{
-          categories
+          categories: Allcategories,
+          isLoading: false
         }
       });
     }
@@ -57,7 +63,10 @@ export default class CategoriesSelect extends PureComponent {
         <div className="col-md-4">
           <Select 
           options={ this.state.categories } 
-          onChange={this.handleChange}/>
+          onChange={this.handleChange}
+          placeholder="Category"
+          isClearable={true}
+          isLoading={this.state.isLoading}/>
         </div>
         <div className="col-md-4"></div>
       </div>

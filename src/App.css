@@ -14,7 +14,7 @@
 .search {
     margin: 0;
     flex: 0 0 80%;
-    padding: 20px;
+    padding: 30px;
 }
 
 .searchbox {
@@ -32,14 +32,6 @@
     flex: 0 0 80%;
     padding: 10px;
 }
-
-.loader {
-  margin: 0;
-  flex: 0 0 80%;
-  padding: 100px;
-  margin-left: 30%;
-}
-
 
 .App-logo {
     height: 40vmin;

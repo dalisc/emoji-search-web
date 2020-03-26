@@ -37,7 +37,13 @@ class App extends Component {
   }
 
   setCategory = selected => {
-    this.setState({category: selected.label});
+    var category;
+    if (selected == null) {
+      category = 'All';
+    } else {
+      category = selected.label;
+    }
+    this.setState({category: category});
     this.handleSearchChange();
   }
 
