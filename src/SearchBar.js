@@ -4,6 +4,13 @@ import PropTypes from "prop-types";
 import "./SearchBar.css";
 
 export default class SearchBar extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+          query: ""
+        };
+      }
+
   static propTypes = {
     textChange: PropTypes.func
   };
@@ -16,7 +23,14 @@ export default class SearchBar extends PureComponent {
     return (
       <div className="component-search-input">
         <div>
-          <input onChange={this.handleChange} />
+          <input 
+            // onChange={event => {this.setState({query: event.target.value})}}
+            onChange={event => this.handleChange(event)}
+            onKeyPress={event => {
+                        if (event.key === 'Enter') {
+                          this.handleChange(event)
+                        }
+                      }} />
         </div>
       </div>
     );

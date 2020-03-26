@@ -1,23 +1,23 @@
 .component-emoji-result-row {
     padding: 10px;
-    height: 100px;
+    height: 50px;
     position: relative;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     cursor: pointer;
 }
 
 .component-emoji-result-row .emoji {
-    font-size: 40px;
+    font-size: 150%;
 }
 
 .component-emoji-result-row .title {
-    font-size: 20px;
+    font-size: 10px;
 }
 
-.component-emoji-result-row .emoji .tooltip-text {
+.component-emoji-result-row .emoji .tooltip-text-copy {
     visibility: hidden;
     width: 120px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: gray;
     color: #fff;
     text-align: center;
     border-radius: 5px;
@@ -30,6 +30,30 @@
     margin-left: -60px;
 }
 
-.component-emoji-result-row:hover .tooltip-text {
+.component-emoji-result-row .emoji .tooltip-text-copied {
+    visibility: hidden;
+    width: 120px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 20px;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 90%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.component-emoji-result-row:hover .tooltip-text-copy {
+    visibility: visible;
+}
+
+.component-emoji-result-row:active .tooltip-text-copied {
+    visibility: visible;
+}
+
+.component-emoji-result-row:active .tooltip-text-copy {
     visibility: visible;
 }

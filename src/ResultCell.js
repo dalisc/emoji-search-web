@@ -17,7 +17,8 @@ export default class ResultCell extends PureComponent {
       >
         <div className="emoji">{this.props.character}
         <p className="title">{this.props.unicodeName}</p>
-        <span className="tooltip-text">Click to copy!</span>
+        <span className="tooltip-text-copy">Click to copy!</span>
+        <span className="tooltip-text-copied">Copied!</span>
         </div>
       </div>
     );
